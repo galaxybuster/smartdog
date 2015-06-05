@@ -86,5 +86,20 @@
 				return false;
 			}
 		}
+
+
+
+		// If we dont have the user's ID, but we do have their name, we can look them up
+		// Aliases will need to take this into account
+		public static function getUserByName($username) {
+			$db = Database::getInstance();
+			$db->query("SELECT * from userinfo WHERE username=?", array($username));
+			$r = $db->firstResult();
+			if ($r != null) {
+				return new User($r['userID']);
+			} else {
+				return false;
+			}
+		}
 	}
 ?>

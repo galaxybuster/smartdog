@@ -50,7 +50,7 @@
 					
 					if ($bank->take($reward)) {
 						if ($user->give($reward)) {
-							$response .= "i gave you :bone:".$reward." for your trouble.";
+							$response .= "i gave you :bone:".$reward." for your trouble, you have :bone:".$user->bones;
 						} else {
 							$response .= "i had trouble paying you though....";
 						}
