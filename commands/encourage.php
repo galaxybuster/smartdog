@@ -3,17 +3,7 @@
 		if (strcmp($str, "me") == 0) {
 			$str = $sender;
 		}
-		// don't encourage thernz
-		if (strcmp($str, "thernz") == 0) {
-			$response = "no, thernz made me this way";
-			return $response;
-		}
-		if (strcmp($sender, "thernz") == 0) {
-			$response = "i will not you can go pound sand";
-			return $response;
-		}
-
-
+		
 		$list = array(
 			"you're the best, ".$str,
 			"yo ".$str." there are 7 billion people, and a lot of dogs, and you're easy top 1 million",
