@@ -4,7 +4,7 @@
 	$response = "";
 	$err = "";
 	if (isset($_POST['token'])) {
-		if ($_POST['token'] == $GLOBALS['slackToken']) {
+		if ($_POST['token'] == Config::get('slackToken')) {
 			// Request came from braingale slack team
 
 			// Get the keyword off
@@ -30,7 +30,7 @@
 
 				case "bgmp": {
 					include("commands/bgmpSlack.php");
-					$response = bgmpSlack($commandList[1]);
+					$response = bgmpSlack($commandList[1], $_POST['user_name'], $_POST['user_id']);
 				}
 				break;
 

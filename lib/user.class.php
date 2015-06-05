@@ -29,8 +29,62 @@
 			} else {
 				$this->isRegistered = false;
 			}
+		}
+
+		// Increases the amount of bones of the user by $amount
+		// Returns true on success.
+		public function give($amount) {
+			$this->refreshBalance();
+
+			$db = Database::getInstance();
+			$val = $this->bones + $amount;
+			$db->query("UPDATE userinfo SET money=? WHERE userID=?", array($val, $this->userid));
+			if (!$db->error()) {
+				$this->refreshBalance();
+				return true;
+			} else {
+				$this->refreshBalance();
+				return false;
+			}
+		}
 
 
+		// Decreases the amount of bones of the user by $amount.
+		// Returns true on success.
+		public function take($amount) {
+			$this->refreshBalance();
+
+			$db = Database::getInstance();
+
+			if ($this->bones >= $amount) {
+				// good to update
+				$val = $this->bones - $amount;
+				$db->query("UPDATE userinfo SET money=? WHERE userID=?", array($val, $this->userid));
+				if (!$db->error()) {
+					$this->refreshBalance();
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+
+
+		// Refreshes the user's money amount by re-reading the database.
+		// returns true on success.
+		public function refreshBalance() {
+			$db = Database::getInstance();
+			$db->query("SELECT money FROM userinfo WHERE userID=?", array($this->userid));
+			$r = $db->firstResult();
+			if ($r != null) {
+				// update this instance's money
+				$this->bones = $r['money'];
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 ?>

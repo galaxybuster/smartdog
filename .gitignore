@@ -39,3 +39,12 @@ Thumbs.db
 
 # Configuration files #
 lib/init.php
+
+# tertiary directories and files #
+fonts/
+img/
+util/
+daily.php
+error_log
+*.sublime-project
+*.sublime-workspace
