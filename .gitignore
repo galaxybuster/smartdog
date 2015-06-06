@@ -44,7 +44,6 @@ lib/init.php
 fonts/
 img/
 util/
-daily.php
 error_log
 *.sublime-project
 *.sublime-workspace
