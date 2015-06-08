@@ -34,6 +34,12 @@
 				}
 				break;
 
+				case "claim": {
+					include("commands/claim.php");
+					$response = claim($commandList[1], $_POST['user_name'], $_POST['user_id']);
+				}
+				break;
+
 				case "encourage": {
 					include("commands/encourage.php");
 					$response = encourage($commandList[1], $_POST['user_name']);
@@ -55,6 +61,12 @@
 				case "iotd": {
 					include("commands/imageoftheday.php");
 					$response = imageoftheday($commandList[1]);
+				}
+				break;
+
+				case "mimic": {
+					include("commands/mimic.php");
+					$response = mimic($commandList[1]);
 				}
 				break;
 
@@ -99,8 +111,6 @@
 				}
 				break;
 			}
-
-
 
 		} else {
 			$err = "Token invalid.";

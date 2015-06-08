@@ -4,17 +4,19 @@
 	This script is run every day at 10am server time.
 
 	Things it should do...
-
+	
+	-reset daily reward to false for all users
 	-delete swack images older than 1 day
 	-say goodmorning to all the crew
 		-if its a holiday say holla
 		-check if user's birthday?
 	-instate a bonus for the day on some condition
-
 	*/
 
 	require_once("lib/config.class.php");
+	require_once("lib/database.class.php");
 
+	// Give a little greeting
 	$greetingsList = array(
 		"goodmorning!",
 		"goodmorning braingale!",
@@ -33,11 +35,19 @@
 		"i can't wait to learn some new things",
 		"i'm so glad to be your friend",
 		"it's today!",
-		"you all can POUND SAND",
-		"i know some of you are cat people _mushbuh_"
+		"you all can POUND SAND"
 	);
 	$greeting = $greetingsList[rand(0, sizeof($greetingsList))];
 	$text = $greeting."\r\n";
+
+	// Reset daily allowance
+	$dailyClaim = 1;
+	$db->query("UPDATE `userinfo` SET `dailyreward`=0");
+	if ($db->error()) {
+		$text .= "i uh couldn't reset your daily allowances, sorry\r\n";
+	} else {
+		$text .= "make sure to get your daily allowance with `smartdog claim`, i'm giving :bone:".$dailyClaim." today\r\n";
+	}
 
 	//place cleanup script here for daily clean up of image folder
 	$filesCleaned = cleanup(60*60*24); // 1 day
@@ -48,7 +58,7 @@
 	// check if holiday say happyday
 	$holiday = holiday(date("Y-m-d"));
 	if ($holiday != false) {
-		$text .= "oh uh happy ".$holiday." by the way\r\n";
+		$text .= "oh and happy ".$holiday." by the way\r\n";
 	}
 
 	// check if bonus say theres a bonus
@@ -59,7 +69,7 @@
 
 
 	// this is the part that actually posts to slack
-	$payload = array("channel"=>"#smartdog", "text"=>$text);
+	$payload = array("channel"=>"#general", "text"=>$text);
 	$fieldsAsString = "payload=".json_encode($payload);
 
 	// Initiate curl

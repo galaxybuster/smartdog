@@ -15,6 +15,10 @@
 				$response = "`bgmp [youtube]`: adds the youtube url to BGMP.\r\n";
 			break;
 
+			case "claim":
+				$response = "`claim`: i'll give you your daily allowance\r\n";
+			break;
+
 			case "encourage":
 				$response = "`encourage [someone]`: i'll say a kind word to someone.\r\n";
 			break;
@@ -48,7 +52,7 @@
 			break;
 
 			default:
-				$response = "here are the tricks i know:\r\n`achewood` `balance` `bgmp` `encourage` `give` `register` `roll` `slots` `swack` `weather` `wiki`\r\nuse `smartdog help [command]` to find more information.";
+				$response = "here are the tricks i know:\r\n`achewood` `balance` `bgmp` `claim` `encourage` `give` `register` `roll` `slots` `swack` `weather` `wiki`\r\nuse `smartdog help [command]` to find more information.";
 			break;
 		}
 

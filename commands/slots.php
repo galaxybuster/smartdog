@@ -40,8 +40,8 @@
 		slotValues[1] - payout multiplier for this panel
 		*/
 		$slotValues = array(
-			array(":boutit:"=>1, ":zippy:"=>5, ":wario:"=>7, ":eyepop:"=>2.4, ":mega:"=>4),
-			array(":boutit:"=>1.33, ":zippy:"=>0.2, ":wario:"=>0, ":eyepop:"=>0.8, ":mega:"=>0.25));
+			array(":boutit:"=>1, ":zippy:"=>5, ":wario:"=>5.3, ":eyepop:"=>2.4, ":mega:"=>4),
+			array(":boutit:"=>1.33, ":zippy:"=>0.25, ":wario:"=>0, ":eyepop:"=>0.8, ":mega:"=>0.35));
 		
 		/*
 		the score will be tallied like so:
